@@ -1,0 +1,24 @@
+{
+  "template": "https://github.com/Cloud-Technology-Solutions/cookiecutter-kubernetes-skaffold",
+  "commit": "0d5e71db2850becfa1b16985c99f90bbfd392a03",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "atd_skaffold_sample",
+      "service_name": "sample",
+      "service_port": "80",
+      "service_namespace": "sample",
+      "repo_address": "https://github.com/dan-brodie/skaffold-sample.git",
+      "sql_db": "yes",
+      "allow_ingress": "yes",
+      "authorised_other_namespace": "sample",
+      "description": "Sample skaffold config structure",
+      "authors": "CTS",
+      "_template": "https://github.com/Cloud-Technology-Solutions/cookiecutter-kubernetes-skaffold"
+    }
+  },
+  "directory": null,
+  "skip": [
+    ".git"
+  ]
+}

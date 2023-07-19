@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-sample
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+  ingress:
+    - to: 
+        - namespaceSelector: sample
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+    - from:
+        - namespaceSelector: {}

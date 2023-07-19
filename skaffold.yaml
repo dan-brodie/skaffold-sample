@@ -1,0 +1,43 @@
+apiVersion: skaffold/v2beta27
+kind: Config
+build:
+  artifacts:
+  - image: sample
+    context: src
+    buildpacks:
+      builder: gcr.io/buildpacks/builder:v1
+      trustBuilder: true
+
+profiles:
+  - name: minikube
+    activation:
+      - kubeContext: minikube
+        command: dev
+    build:
+      local:
+        push: false
+    deploy:
+      kustomize:
+        paths:
+        - k8/overlays/local
+
+    portForward:
+      - resourceType: deployment
+        resourceName: sample
+        namespace: sample
+        port: 80
+
+  - name: dev
+    build:
+      googleCloudBuild:
+        concurrency: 1
+        projectId: atd_skaffold_sample
+      tagPolicy:
+        gitCommit:
+          ignoreChanges: false
+          variant: AbbrevCommitSha
+    deploy:
+      kustomize:
+        paths:
+        - k8/overlays/dev
+
